@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バンド募集掲示板</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="band-list.html" class="back-link">← 掲示板一覧へ戻る</a>
+</header>
+
+<main>
+    <h2 id="boardTitle"></h2>
+
+    <div id="posts"></div>
+
+    <form id="postForm">
+        <input type="text" id="name" placeholder="名前" required>
+        <textarea id="message" placeholder="募集内容" required></textarea>
+        <button type="submit">投稿する</button>
+    </form>
+</main>
+
+<script src="band.js"></script>
+
+</body>
+</html>
+
+

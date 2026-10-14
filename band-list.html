@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バンド募集一覧</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+</header>
+
+<main>
+    <h2>バンド募集掲示板一覧</h2>
+
+    <!-- 新しい掲示板を作るフォーム -->
+    <input type="text" id="userName" placeholder="あなたの名前">
+    <button onclick="createBoard()">掲示板を作る</button>
+
+    <h3>みんなの掲示板</h3>
+    <div id="boardList"></div>
+</main>
+
+<script>
+    // 掲示板一覧を保存する
+    var boards = JSON.parse(localStorage.getItem("boards") || "[]");
+
+    function createBoard() {
+        var name = document.getElementById("userName").value;
+        if (!name) return;
+
+        // 新しい掲示板を登録
+        boards.push(name);
+        localStorage.setItem("boards", JSON.stringify(boards));
+
+        displayBoards();
+
+        // 個人掲示板へ移動
+        window.location.href = "band.html?user=" + encodeURIComponent(name);
+    }
+
+    function displayBoards() {
+        var list = document.getElementById("boardList");
+        list.innerHTML = "";
+
+        boards.forEach(function(name) {
+            var div = document.createElement("div");
+            div.className = "post-card";
+            div.innerHTML =
+                "<a href='band.html?user=" + encodeURIComponent(name) + "'>" +
+                name + " の掲示板" +
+                "</a>";
+            list.appendChild(div);
+        });
+    }
+
+    displayBoards();
+</script>
+
+</body>
+</html>
